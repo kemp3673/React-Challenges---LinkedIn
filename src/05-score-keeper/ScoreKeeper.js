@@ -1,7 +1,18 @@
 import { useEffect, useState } from 'react'
 
 export default function ScoreKeeper () {
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(parseInt(localStorage.getItem('userScore')) || 0)
+
+  // useEffect(() => {
+  //   const localScore = localStorage.getItem('userScore');
+  //   if (localScore !== undefined) {
+  //     setScore(localScore);
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    localStorage.setItem('userScore', score)
+  }, [score]);
 
   return (
     <div>
@@ -11,3 +22,6 @@ export default function ScoreKeeper () {
     </div>
   )
 }
+
+// localStorage.getItem(key) - retrieve an item
+// localStorage.setItem(key, value) - set data in localStorage
